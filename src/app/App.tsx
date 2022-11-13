@@ -13,8 +13,6 @@ const App = () => (
   <BrowserRouter>
     <Navigation />
 
-    <hr />
-
     <Routes>
       <Route index element={<Login />} />
       <Route path={ROUTES.LOGIN} element={<Login />} />
