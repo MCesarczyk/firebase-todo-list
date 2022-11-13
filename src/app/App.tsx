@@ -1,14 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import * as ROUTES from '../../constants/routes';
-import Account from '../Account';
-import Admin from '../Admin';
-import Dashboard from '../Dashboard';
-import Landing from '../Landing';
-import Login from '../Login';
-import Navigation from '../Navigation';
-import PasswordForget from '../PasswordForget';
-import Register from '../Register';
+import * as ROUTES from './routes';
+import Dashboard from '../views/Dashboard';
+import Login from '../views/Login';
+import Navigation from './Navigation';
+import Register from '../views/Register';
+import PasswordForget from '../views/Reset';
+import Account from '../views/Account';
+import Admin from '../views/Admin';
 
 const App = () => (
   <BrowserRouter>
@@ -17,7 +16,7 @@ const App = () => (
     <hr />
 
     <Routes>
-      <Route path={ROUTES.LANDING} element={<Landing />} />
+      <Route index element={<Login />} />
       <Route path={ROUTES.LOGIN} element={<Login />} />
       <Route path={ROUTES.REGISTER} element={<Register />} />
       <Route path={ROUTES.RESET} element={<PasswordForget />} />

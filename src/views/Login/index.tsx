@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../Firebase/firebase";
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./style.css";
 
