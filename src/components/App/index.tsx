@@ -3,12 +3,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import Account from '../Account';
 import Admin from '../Admin';
-import Home from '../Home';
+import Dashboard from '../Dashboard';
 import Landing from '../Landing';
+import Login from '../Login';
 import Navigation from '../Navigation';
 import PasswordForget from '../PasswordForget';
-import Login from '../Login';
-import SignUp from '../SignUp';
+import Register from '../Register';
 
 const App = () => (
   <BrowserRouter>
@@ -18,10 +18,10 @@ const App = () => (
 
     <Routes>
       <Route path={ROUTES.LANDING} element={<Landing />} />
-      <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-      <Route path={ROUTES.SIGN_IN} element={<Login />} />
-      <Route path={ROUTES.PASSWORD_FORGET} element={<PasswordForget />} />
-      <Route path={ROUTES.HOME} element={<Home />} />
+      <Route path={ROUTES.LOGIN} element={<Login />} />
+      <Route path={ROUTES.REGISTER} element={<Register />} />
+      <Route path={ROUTES.RESET} element={<PasswordForget />} />
+      <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
       <Route path={ROUTES.ACCOUNT} element={<Account />} />
       <Route path={ROUTES.ADMIN} element={<Admin />} />
     </Routes>
