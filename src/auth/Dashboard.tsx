@@ -10,7 +10,7 @@ import { Button } from "components/Button";
 import { TextRow } from "components/TextRow";
 
 
-const Dashboard = () => {
+export const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
@@ -48,5 +48,3 @@ const Dashboard = () => {
     </Layout>
   );
 };
-
-export default Dashboard;

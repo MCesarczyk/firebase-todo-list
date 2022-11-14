@@ -10,7 +10,7 @@ import { TextBox } from "components/TextBox";
 import { TextRow } from "components/TextRow";
 
 
-const Register = () => {
+export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -66,5 +66,3 @@ const Register = () => {
     </Layout>
   );
 };
-
-export default Register;

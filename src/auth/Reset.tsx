@@ -11,7 +11,7 @@ import { TextBox } from "components/TextBox";
 import { TextRow } from "components/TextRow";
 
 
-const Reset = () => {
+export const Reset = () => {
   const [email, setEmail] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
@@ -44,5 +44,3 @@ const Reset = () => {
     </Layout>
   );
 };
-
-export default Reset;

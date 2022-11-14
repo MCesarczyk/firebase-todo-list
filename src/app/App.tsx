@@ -1,15 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Dashboard from 'auth/Dashboard';
-import Login from 'auth/Login';
-import Register from 'auth/Register';
-import PasswordForget from 'auth/Reset';
-import Todos from 'todos/Todos';
+import { Dashboard } from 'auth/Dashboard';
+import { Login } from 'auth/Login';
+import { Register } from 'auth/Register';
+import { Reset } from 'auth/Reset';
+import { Todos } from 'todos/Todos';
 
 import * as ROUTES from './routes';
-import Navigation from './Navigation';
+import { Navigation } from './Navigation';
 
-const App = () => (
+export const App = () => (
   <BrowserRouter>
     <Navigation />
 
@@ -17,11 +17,9 @@ const App = () => (
       <Route index element={<Login />} />
       <Route path={ROUTES.LOGIN} element={<Login />} />
       <Route path={ROUTES.REGISTER} element={<Register />} />
-      <Route path={ROUTES.RESET} element={<PasswordForget />} />
+      <Route path={ROUTES.RESET} element={<Reset />} />
       <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
       <Route path={ROUTES.TODOS} element={<Todos />} />
     </Routes>
   </BrowserRouter>
 );
-
-export default App;

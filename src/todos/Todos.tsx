@@ -1,7 +1,5 @@
-const Todos = () => (
+export const Todos = () => (
   <div>
-    <h1 style={{textAlign:'center'}}>Todos</h1>
+    <h1 style={{ textAlign: 'center' }}>Todos</h1>
   </div>
 );
-
-export default Todos;

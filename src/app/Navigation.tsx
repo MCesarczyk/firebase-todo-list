@@ -36,7 +36,7 @@ const NavigationLink = styled(NavLink)`
   padding: 1rem;
 `;
 
-const Navigation = () => (
+export const Navigation = () => (
   <nav>
     <NavigationList>
       <NavigationItem>
@@ -48,5 +48,3 @@ const Navigation = () => (
     </NavigationList>
   </nav>
 );
-
-export default Navigation;
