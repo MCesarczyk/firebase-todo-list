@@ -40,13 +40,10 @@ const Navigation = () => (
   <nav>
     <NavigationList>
       <NavigationItem>
-        <NavigationLink to={ROUTES.DASHBOARD}>Home</NavigationLink>
+        <NavigationLink to={ROUTES.DASHBOARD}>Dashboard</NavigationLink>
       </NavigationItem>
       <NavigationItem>
-        <NavigationLink to={ROUTES.ACCOUNT}>Account</NavigationLink>
-      </NavigationItem>
-      <NavigationItem>
-        <NavigationLink to={ROUTES.ADMIN}>Admin</NavigationLink>
+        <NavigationLink to={ROUTES.TODOS}>Todos</NavigationLink>
       </NavigationItem>
     </NavigationList>
   </nav>
