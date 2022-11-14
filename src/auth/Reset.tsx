@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 import { auth, sendPasswordReset } from "../services/firebase";
 
-import { Button } from "../components/Button";
-import { Layout } from "../components/Layout";
-import { TextBox } from "../components/TextBox";
-import { TextRow } from "../components/TextRow";
+import { Button } from "components/Button";
+import { Layout } from "components/Layout";
+import { TextBox } from "components/TextBox";
+import { TextRow } from "components/TextRow";
 
 
 const Reset = () => {

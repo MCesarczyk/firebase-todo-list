@@ -3,11 +3,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { query, collection, getDocs, where } from "firebase/firestore";
 
-import { auth, db, logout } from "../services/firebase";
+import { auth, db, logout } from "services/firebase";
 
-import { Layout } from "../components/Layout";
-import { Button } from "../components/Button";
-import { TextRow } from "../components/TextRow";
+import { Layout } from "components/Layout";
+import { Button } from "components/Button";
+import { TextRow } from "components/TextRow";
 
 
 const Dashboard = () => {

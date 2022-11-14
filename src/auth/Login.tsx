@@ -4,10 +4,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../services/firebase";
 
-import { Layout } from "../components/Layout";
-import { Button } from "../components/Button";
-import { TextRow } from "../components/TextRow";
-import { TextBox } from "../components/TextBox";
+import { Layout } from "components/Layout";
+import { Button } from "components/Button";
+import { TextRow } from "components/TextRow";
+import { TextBox } from "components/TextBox";
 
 
 const Login = () => {

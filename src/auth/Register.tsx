@@ -4,10 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { auth, registerWithEmailAndPassword, signInWithGoogle } from "../services/firebase";
 
-import { Button } from "../components/Button";
-import { Layout } from "../components/Layout";
-import { TextBox } from "../components/TextBox";
-import { TextRow } from "../components/TextRow";
+import { Button } from "components/Button";
+import { Layout } from "components/Layout";
+import { TextBox } from "components/TextBox";
+import { TextRow } from "components/TextRow";
 
 
 const Register = () => {
