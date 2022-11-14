@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import * as ROUTES from './routes';
-import Dashboard from '../views/Dashboard';
+import Dashboard from '../views/dashboard/Dashboard';
 import Login from '../views/Login';
 import Navigation from './Navigation';
 import Register from '../views/Register';

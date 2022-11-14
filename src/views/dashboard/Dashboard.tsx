@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../../services/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import "./style.css";
+import { Layout } from "../../components/Layout";
 
 
 const Dashboard = () => {
@@ -31,20 +32,18 @@ const Dashboard = () => {
   }, [user, loading, fetchUserName, navigate]);
 
   useEffect(() => {
-      error && console.log(error);
+    error && console.log(error);
   }, [error]);
 
   return (
-    <div className="dashboard">
-      <div className="dashboard__container">
-        Logged in as
-        <div>{name}</div>
-        <div>{user?.email}</div>
-        <button className="dashboard__btn" onClick={logout}>
-          Logout
-        </button>
-      </div>
-    </div>
+    <Layout>
+      Logged in as
+      <div>{name}</div>
+      <div>{user?.email}</div>
+      <button className="dashboard__btn" onClick={logout}>
+        Logout
+      </button>
+    </Layout>
   );
 };
 
