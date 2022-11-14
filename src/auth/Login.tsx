@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "./style.css";
-import { Layout } from "../../components/Layout";
+
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../services/firebase";
+
+import { Layout } from "../components/Layout";
+import { Button } from "../components/Button";
+import { TextRow } from "../components/TextRow";
+import { TextBox } from "../components/TextBox";
 
 
 const Login = () => {
@@ -26,35 +30,35 @@ const Login = () => {
 
   return (
     <Layout>
-      <input
+      <TextBox
         type="text"
-        className="login__textBox"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="E-mail Address"
       />
-      <input
+      <TextBox
         type="password"
-        className="login__textBox"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
-      <button
-        className="login__btn"
+      <Button
         onClick={() => logInWithEmailAndPassword(email, password)}
       >
         Login
-      </button>
-      <button className="login__btn login__google" onClick={signInWithGoogle}>
+      </Button>
+      <Button
+        branded
+        onClick={signInWithGoogle}
+      >
         Login with Google
-      </button>
-      <div>
+      </Button>
+      <TextRow>
         <Link to="/reset">Forgot Password</Link>
-      </div>
-      <div>
+      </TextRow>
+      <TextRow>
         Don't have an account? <Link to="/register">Register</Link> now.
-      </div>
+      </TextRow>
     </Layout>
   );
 };

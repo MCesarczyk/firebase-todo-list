@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Layout } from "../../components/Layout";
 
-import { auth, sendPasswordReset } from "../../services/firebase";
-import "./style.css";
+import { auth, sendPasswordReset } from "../services/firebase";
+
+import { Button } from "../components/Button";
+import { Layout } from "../components/Layout";
+import { TextBox } from "../components/TextBox";
+import { TextRow } from "../components/TextRow";
 
 
 const Reset = () => {
@@ -24,22 +27,20 @@ const Reset = () => {
 
   return (
     <Layout>
-      <input
+      <TextBox
         type="text"
-        className="reset__textBox"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="E-mail Address"
       />
-      <button
-        className="reset__btn"
+      <Button
         onClick={() => sendPasswordReset(email)}
       >
         Send password reset email
-      </button>
-      <div>
+      </Button>
+      <TextRow>
         Don't have an account? <Link to="/register">Register</Link> now.
-      </div>
+      </TextRow>
     </Layout>
   );
 };

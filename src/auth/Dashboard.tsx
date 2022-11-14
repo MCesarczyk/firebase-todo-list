@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-
-import { auth, db, logout } from "../../services/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import "./style.css";
-import { Layout } from "../../components/Layout";
+
+import { auth, db, logout } from "../services/firebase";
+
+import { Layout } from "../components/Layout";
+import { Button } from "../components/Button";
+import { TextRow } from "../components/TextRow";
 
 
 const Dashboard = () => {
@@ -38,11 +40,11 @@ const Dashboard = () => {
   return (
     <Layout>
       Logged in as
-      <div>{name}</div>
-      <div>{user?.email}</div>
-      <button className="dashboard__btn" onClick={logout}>
+      <TextRow>{name}</TextRow>
+      <TextRow>{user?.email}</TextRow>
+      <Button onClick={logout}>
         Logout
-      </button>
+      </Button>
     </Layout>
   );
 };

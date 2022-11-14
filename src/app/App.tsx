@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import * as ROUTES from './routes';
-import Dashboard from '../views/dashboard/Dashboard';
-import Login from '../views/Login';
+import Dashboard from '../auth/Dashboard';
+import Login from '../auth/Login';
 import Navigation from './Navigation';
-import Register from '../views/Register';
-import PasswordForget from '../views/Reset';
+import Register from '../auth/Register';
+import PasswordForget from '../auth/Reset';
 import Account from '../views/Account';
 import Admin from '../views/Admin';
 

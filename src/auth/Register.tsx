@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { Layout } from "../../components/Layout";
-import { auth, registerWithEmailAndPassword, signInWithGoogle } from "../../services/firebase";
-import "./style.css";
+
+import { auth, registerWithEmailAndPassword, signInWithGoogle } from "../services/firebase";
+
+import { Button } from "../components/Button";
+import { Layout } from "../components/Layout";
+import { TextBox } from "../components/TextBox";
+import { TextRow } from "../components/TextRow";
 
 
 const Register = () => {
@@ -29,39 +33,36 @@ const Register = () => {
 
   return (
     <Layout>
-      <input
+      <TextBox
         type="text"
-        className="register__textBox"
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Full Name"
       />
-      <input
+      <TextBox
         type="text"
-        className="register__textBox"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="E-mail Address"
       />
-      <input
+      <TextBox
         type="password"
-        className="register__textBox"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
-      <button className="register__btn" onClick={register}>
+      <Button onClick={register}>
         Register
-      </button>
-      <button
-        className="register__btn register__google"
+      </Button>
+      <Button
+        branded
         onClick={signInWithGoogle}
       >
         Register with Google
-      </button>
-      <div>
+      </Button>
+      <TextRow>
         Already have an account? <Link to="/login">Login</Link> now.
-      </div>
+      </TextRow>
     </Layout>
   );
 };
