@@ -10,7 +10,7 @@ import * as ROUTES from './routes';
 import { Navigation } from './Navigation';
 
 export const App = () => (
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
+  <BrowserRouter basename={process.env.NODE_ENV === 'production' ? "/firebase-todo-list/" : ""}>
     <Navigation />
 
     <Routes>
