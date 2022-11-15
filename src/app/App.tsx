@@ -10,7 +10,7 @@ import * as ROUTES from './routes';
 import { Navigation } from './Navigation';
 
 export const App = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Navigation />
 
     <Routes>
