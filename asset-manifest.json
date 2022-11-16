@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/firebase-todo-list/static/js/main.db66b726.js",
+    "main.js": "/firebase-todo-list/static/js/main.2cb98131.js",
     "static/js/787.716b33d6.chunk.js": "/firebase-todo-list/static/js/787.716b33d6.chunk.js",
     "index.html": "/firebase-todo-list/index.html",
-    "main.db66b726.js.map": "/firebase-todo-list/static/js/main.db66b726.js.map",
+    "main.2cb98131.js.map": "/firebase-todo-list/static/js/main.2cb98131.js.map",
     "787.716b33d6.chunk.js.map": "/firebase-todo-list/static/js/787.716b33d6.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.db66b726.js"
+    "static/js/main.2cb98131.js"
   ]
 }
