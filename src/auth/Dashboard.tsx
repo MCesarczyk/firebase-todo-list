@@ -1,19 +1,20 @@
 import { useCallback, useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { query, collection, getDocs, where } from "firebase/firestore";
-
-import { auth, db, logout } from "services/firebase";
+import { db, logout } from "services/firebase";
+import { User } from "firebase/auth";
 
 import { Layout } from "components/Layout";
 import { Button } from "components/Button";
 import { TextRow } from "components/TextRow";
 
+interface DashboardProps {
+  user: User | null | undefined;
+  loading: boolean;
+  error?: Error;
+};
 
-export const Dashboard = () => {
-  const [user, loading, error] = useAuthState(auth);
+export const Dashboard = ({ user, loading, error }: DashboardProps) => {
   const [name, setName] = useState("");
-  const navigate = useNavigate();
 
   const fetchUserName = useCallback(async () => {
     try {
@@ -29,9 +30,9 @@ export const Dashboard = () => {
 
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+
     fetchUserName();
-  }, [user, loading, fetchUserName, navigate]);
+  }, [user, loading, fetchUserName]);
 
   useEffect(() => {
     error && console.log(error);

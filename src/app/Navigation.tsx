@@ -17,7 +17,7 @@ const NavigationItem = styled.li`
 `;
 
 const NavigationLink = styled(NavLink)`
-  background-color: #4285f4;
+  background-color: #525252;
   border: 1px solid #fff;
   color: #fff;
   font-size: 1.5rem;
@@ -29,7 +29,7 @@ const NavigationLink = styled(NavLink)`
   }
 
   &.active {
-    background-color: #525252;
+    background-color: #4285f4;
   }
   width: 100%;
   height: 100%;

@@ -1,4 +1,6 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "services/firebase";
 
 import { Dashboard } from 'auth/Dashboard';
 import { Login } from 'auth/Login';
@@ -8,18 +10,31 @@ import { Todos } from 'todos/Todos';
 
 import * as ROUTES from './routes';
 import { Navigation } from './Navigation';
+import { ProtectedRoute } from 'auth/ProtectedRoute';
 
-export const App = () => (
-  <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/firebase-todo-list/' : ''}>
-    <Navigation />
+export const App = () => {
+  const [user, loading, error] = useAuthState(auth);
 
-    <Routes>
-      <Route index element={<Login />} />
-      <Route path={ROUTES.LOGIN} element={<Login />} />
-      <Route path={ROUTES.REGISTER} element={<Register />} />
-      <Route path={ROUTES.RESET} element={<Reset />} />
-      <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
-      <Route path={ROUTES.TODOS} element={<Todos />} />
-    </Routes>
-  </BrowserRouter>
-);
+  return (
+    <HashRouter>
+      <Navigation />
+
+      <Routes>
+        <Route index element={<Login />} />
+        <Route path={ROUTES.LOGIN} element={<Login />} />
+        <Route path={ROUTES.REGISTER} element={<Register />} />
+        <Route path={ROUTES.RESET} element={<Reset />} />
+        <Route path={ROUTES.DASHBOARD} element={
+          <ProtectedRoute user={user}>
+            <Dashboard user={user} loading={loading} error={error} />
+          </ProtectedRoute>
+        } />
+        <Route path={ROUTES.TODOS} element={
+          <ProtectedRoute user={user}>
+            <Todos />
+          </ProtectedRoute>
+        } />
+      </Routes>
+    </HashRouter>
+  )
+};
