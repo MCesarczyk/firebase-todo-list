@@ -24,16 +24,10 @@ export const App = () => {
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.REGISTER} element={<Register />} />
         <Route path={ROUTES.RESET} element={<Reset />} />
-        <Route path={ROUTES.DASHBOARD} element={
-          <ProtectedRoute user={user}>
-            <Dashboard user={user} loading={loading} error={error} />
-          </ProtectedRoute>
-        } />
-        <Route path={ROUTES.TODOS} element={
-          <ProtectedRoute user={user}>
-            <Todos />
-          </ProtectedRoute>
-        } />
+        <Route element={<ProtectedRoute user={user} />}>
+          <Route path={ROUTES.DASHBOARD} element={<Dashboard user={user} loading={loading} error={error} />} />
+          <Route path={ROUTES.TODOS} element={<Todos />} />
+        </Route>
       </Routes>
     </HashRouter>
   )
