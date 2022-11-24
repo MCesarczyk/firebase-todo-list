@@ -55,7 +55,7 @@ export const Register = () => {
         Register
       </Button>
       <Button
-        branded
+        color="#4285f4"
         onClick={signInWithGoogle}
       >
         Register with Google

@@ -1,14 +1,16 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-export const Button = styled.button<{ branded?: boolean }>`
+export const Button = styled.button<{ color?: string }>`
   padding: 10px;
   font-size: 18px;
   margin-top: 10px;
   border: none;
   color: white;
-  background-color: black;
+  background-color: ${({ color }) => color || '#525252'};
+  transition: all 0.5s ease-out;
 
-  ${({ branded }) => branded && css`
-    background-color: #4285f4;
-  `}
+  &:hover{
+    transform: scale(1.0125);
+    filter: brightness(1.25);
+  }
 `;

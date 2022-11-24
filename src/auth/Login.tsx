@@ -48,7 +48,7 @@ export const Login = () => {
         Login
       </Button>
       <Button
-        branded
+        color="#4285f4"
         onClick={signInWithGoogle}
       >
         Login with Google
