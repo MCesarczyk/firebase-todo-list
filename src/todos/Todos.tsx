@@ -4,8 +4,7 @@ import { collection, query, orderBy, onSnapshot } from "firebase/firestore"
 import { db } from 'services/firebase'
 
 import { Task } from "todos/types";
-import { TasksList } from "components/TasksList";
-import { Form } from "components/Form";
+import { Form, TasksList } from "components";
 
 export const Todos = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
