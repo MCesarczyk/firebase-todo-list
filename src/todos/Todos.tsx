@@ -6,8 +6,8 @@ import { db } from 'services/firebase'
 
 import { Button } from "components/Button";
 import { AddTodo } from "./AddTodo";
-import { TodosList } from "./TodosList";
 import { Task } from "./types";
+import { TasksList } from "../components/TasksList";
 
 const ButtonWrapper = styled.div`
   margin: 2rem;
@@ -43,7 +43,7 @@ export const Todos = () => {
       <ButtonWrapper>
         <Button onClick={() => setAddModalVisible(true)}>Add new todo</Button>
       </ButtonWrapper>
-      <TodosList tasks={tasks} />
+      <TasksList tasks={tasks} />
     </>
   )
 };
