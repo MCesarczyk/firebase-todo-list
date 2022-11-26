@@ -37,13 +37,13 @@ export const Todos = () => {
   }, [tasks]);
 
   return (
-    <div>
+    <>
       <h1 style={{ textAlign: 'center' }}>Todos</h1>
       <AddTodo visible={addModalVisible} setVisible={setAddModalVisible} />
       <ButtonWrapper>
         <Button onClick={() => setAddModalVisible(true)}>Add new todo</Button>
       </ButtonWrapper>
       <TodosList tasks={tasks} />
-    </div>
+    </>
   )
 };

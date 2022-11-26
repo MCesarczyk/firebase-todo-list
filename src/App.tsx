@@ -8,8 +8,8 @@ import { Register } from 'auth/Register';
 import { Reset } from 'auth/Reset';
 import { Todos } from 'todos/Todos';
 
-import * as ROUTES from './routes';
-import { Navigation } from './Navigation';
+import * as ROUTES from './app/routes';
+import { Navigation } from './app/Navigation';
 import { ProtectedRoute } from 'auth/ProtectedRoute';
 
 export const App = () => {
