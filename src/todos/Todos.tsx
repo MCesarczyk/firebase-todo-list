@@ -1,25 +1,17 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore"
 
 import { db } from 'services/firebase'
 
-import { Button } from "components/Button";
-import { AddTodo } from "./AddTodo";
-import { Task } from "./types";
-import { TasksList } from "../components/TasksList";
-
-const ButtonWrapper = styled.div`
-  margin: 2rem;
-  text-align: center;
-`;
+import { Task } from "todos/types";
+import { TasksList } from "components/TasksList";
+import { Form } from "components/Form";
 
 export const Todos = () => {
-  const [addModalVisible, setAddModalVisible] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const getTasks = async () => {
-    const q = await query(collection(db, 'tasks'), orderBy('created', 'desc'));
+  const getTasks = () => {
+    const q = query(collection(db, 'tasks'), orderBy('created', 'desc'));
     onSnapshot(q, (querySnapshot) => {
       setTasks(querySnapshot.docs.map(doc => ({
         id: doc.id,
@@ -38,11 +30,7 @@ export const Todos = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: 'center' }}>Todos</h1>
-      <AddTodo visible={addModalVisible} setVisible={setAddModalVisible} />
-      <ButtonWrapper>
-        <Button onClick={() => setAddModalVisible(true)}>Add new todo</Button>
-      </ButtonWrapper>
+      <Form />
       <TasksList tasks={tasks} />
     </>
   )

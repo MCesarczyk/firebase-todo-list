@@ -1,0 +1,1 @@
+export const TASK_TITLE_TRIMMED_LENGTH = 12;

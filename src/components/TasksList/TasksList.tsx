@@ -19,7 +19,7 @@ export const TasksList = ({tasks}:TasksListProps) => (
             {task.data.completed ? "✔" : " "}
           </Button>
           <TaskContent done={task.data.completed}>
-            <StyledLink to={`/tasks/${task.id}`}>{task.data.title}</StyledLink>
+            <StyledLink to={`/tasks/${task.id}`}>{task.data.title}...</StyledLink>
           </TaskContent>
           <Button
             remove
