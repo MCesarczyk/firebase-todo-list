@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { StyledTaskList, ListItem, TaskContent, Button, StyledLink, Textarea, TextareaWrapper, TextareaButtonsWrapper } from "./styled";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { RenderedTask } from "todos/types";
 import { db } from 'services/firebase';
+import { SEARCH_QUERY_PARAM_NAME } from "app/constants";
+import { RenderedTask } from "todos/types";
 import { TASK_TITLE_TRIMMED_LENGTH } from "todos/constants";
 
 interface TasksListProps {
@@ -12,6 +14,8 @@ interface TasksListProps {
 };
 
 export const TasksList = ({ tasks, setTasks, hideDone }: TasksListProps) => {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get(SEARCH_QUERY_PARAM_NAME);
   const [textareaValue, setTextareaValue] = useState<any>("");
 
   const toggleTaskEdited = (taskId: string) => {
@@ -49,6 +53,16 @@ export const TasksList = ({ tasks, setTasks, hideDone }: TasksListProps) => {
     }
   };
 
+  const getFilteredTasks = (query: string | null) => {
+    if (!query || query.trim() === "") {
+      return tasks;
+    }
+
+    return tasks.filter(({ data }) => data.description.toUpperCase().includes(query.trim().toUpperCase()));
+  };
+
+  const filteredTasks = getFilteredTasks(query);
+
   const handleCheckedChange = async (taskId: string) => {
     const actualTaskState = tasks.filter(({ id }) => id === taskId)[0].data.completed;
     const taskDocRef = doc(db, 'tasks', taskId);
@@ -64,7 +78,7 @@ export const TasksList = ({ tasks, setTasks, hideDone }: TasksListProps) => {
 
   return (
     <StyledTaskList>
-      {tasks.map(task => (
+      {filteredTasks.map(task => (
         <ListItem
           key={task.id}
           hidden={task.data.completed && hideDone}

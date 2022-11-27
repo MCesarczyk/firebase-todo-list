@@ -1,25 +1,23 @@
 import { useQueryParameter, useReplaceQueryParameter } from "app/queryParameters";
-import searchQueryParamName from "app/searchQueryParamName";
+import { SEARCH_QUERY_PARAM_NAME } from "app/constants";
 import { Input } from "./Input";
-import styled from "styled-components";
 
 export const Search = () => {
-    const query = useQueryParameter(searchQueryParamName);
+    const query = useQueryParameter(SEARCH_QUERY_PARAM_NAME);
     const replaceQueryParameter = useReplaceQueryParameter();
 
-    // const onInputChange = ({ target }: any) => {
-    //     replaceQueryParameter({
-    //         key: searchQueryParamName,
-    //         value: target.value.trim() !== "" ? target.value : undefined,
-    //     });
-    // };
+    const onInputChange = ({ target }: any) => {
+        replaceQueryParameter({
+            key: SEARCH_QUERY_PARAM_NAME,
+            value: target.value.trim() !== "" ? target.value : undefined,
+        });
+    };
 
     return (
         <Input
             placeholder="Search"
             value={query || ""}
-            onChange={() => { }}
-        // onChange={onInputChange}
+            onChange={onInputChange}
         />
     )
 };

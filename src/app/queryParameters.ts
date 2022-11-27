@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export const useQueryParameter = (key: string) => {
     const location = useLocation();
@@ -9,11 +9,11 @@ export const useQueryParameter = (key: string) => {
 interface QueryStringParams {
     key: string;
     value: string;
-
 };
 
 export const useReplaceQueryParameter = () => {
     const location = useLocation();
+    const navigate = useNavigate();
 
     return ({ key, value }: QueryStringParams) => {
         const searchParams = new URLSearchParams(location.search);
@@ -24,6 +24,6 @@ export const useReplaceQueryParameter = () => {
             searchParams.delete(key);
         }
 
-        // history.push(`${location.pathname}?${searchParams.toString()}`);
+        navigate(`${location.pathname}?${searchParams.toString()}`);
     }
 };
