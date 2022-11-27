@@ -20,7 +20,9 @@ export const ListItem = styled.li`
     border-color: ${({ theme }) => theme.color.borders};
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.a`
+    text-decoration: none;
+    cursor: pointer;
     color: ${({ theme }) => theme.color.primary};
     
       &:active {

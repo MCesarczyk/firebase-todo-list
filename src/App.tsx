@@ -8,16 +8,27 @@ import { Register } from 'auth/Register';
 import { Reset } from 'auth/Reset';
 import { Todos } from 'todos/Todos';
 
-import * as ROUTES from './app/routes';
-import { Navigation } from './app/Navigation';
+import * as ROUTES from 'app/routes';
 import { ProtectedRoute } from 'auth/ProtectedRoute';
+import { Navigation } from 'components';
 
 export const App = () => {
   const [user, loading, error] = useAuthState(auth);
 
   return (
     <HashRouter>
-      <Navigation />
+      <Navigation
+        routes={[
+          {
+            path: ROUTES.DASHBOARD,
+            label: "Dashboard",
+          },
+          {
+            path: ROUTES.TODOS,
+            label: "Todos",
+          },
+        ]}
+      />
 
       <Routes>
         <Route index element={<Login />} />

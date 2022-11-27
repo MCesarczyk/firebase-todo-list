@@ -8,6 +8,7 @@ export const Button = styled.button<{ color?: string }>`
   color: white;
   background-color: ${({ color }) => color || '#525252'};
   transition: all 0.5s ease-out;
+  cursor: pointer;
 
   &:hover{
     transform: scale(1.0125);

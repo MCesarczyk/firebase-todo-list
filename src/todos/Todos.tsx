@@ -3,11 +3,11 @@ import { collection, query, orderBy, onSnapshot } from "firebase/firestore"
 
 import { db } from 'services/firebase'
 
-import { Task } from "todos/types";
+import { RenderedTask } from "todos/types";
 import { Form, TasksList } from "components";
 
 export const Todos = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<RenderedTask[]>([]);
 
   const getTasks = () => {
     const q = query(collection(db, 'tasks'), orderBy('created', 'desc'));
@@ -15,6 +15,7 @@ export const Todos = () => {
       setTasks(querySnapshot.docs.map(doc => ({
         id: doc.id,
         data: doc.data(),
+        edited: false,
       })))
     })
   };

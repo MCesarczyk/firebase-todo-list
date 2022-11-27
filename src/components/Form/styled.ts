@@ -20,6 +20,7 @@ export const Button = styled.button`
     padding: 5px;
     padding: 10px;
     margin: 10px;
+    cursor: pointer;
     transition: background 0.5s, transform 1s;
 
     &:hover {

@@ -9,14 +9,20 @@ export const Form = () => {
     const [newTaskContent, setNewTaskContent] = useState("");
 
     const handleSubmit = async (e: any) => {
-        e.preventDefault()
+        e.preventDefault();
+
+        if (!newTaskContent.trim().length) {
+            return;
+        }
+
         try {
             await addDoc(collection(db, 'tasks'), {
                 title: newTaskContent.slice(0, TASK_TITLE_TRIMMED_LENGTH),
                 description: newTaskContent,
                 completed: false,
-                created: Timestamp.now()
+                created: Timestamp.now(),
             });
+
             setNewTaskContent("");
             inputRef.current?.focus();
         } catch (err) {
