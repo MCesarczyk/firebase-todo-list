@@ -38,7 +38,12 @@ export const TaskContent = styled.span<{ done: boolean }>`
     `}
 `;
 
-export const Button = styled.button<{ toggleDone?: boolean, remove?: boolean }>`
+export const Button = styled.button<{
+    toggleDone?: boolean,
+    remove?: boolean,
+    accept?: boolean,
+    abort?: boolean
+}>`
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -52,27 +57,50 @@ export const Button = styled.button<{ toggleDone?: boolean, remove?: boolean }>`
 
     ${({ toggleDone }) => toggleDone && css`
         background-color: ${({ theme }) => theme.color.toggleDone};
-
-        &:hover {
-            filter: brightness(130%);
-        }
-
-        &:active {
-            filter: brightness(160%);
-            box-shadow: inset 1px 1px 3px ${({ theme }) => theme.color.shadows};
-        }
     `}
 
     ${({ remove }) => remove && css`
         background-color: ${({ theme }) => theme.color.remove};
-
-        &:hover {
-            filter: brightness(130%);
-        }
-
-        &:active {
-            filter: brightness(160%);
-            box-shadow: inset 1px 1px 3px ${({ theme }) => theme.color.shadows};
-        }
     `}
+
+    ${({ accept }) => accept && css`
+        background-color: ${({ theme }) => theme.color.accept};
+    `}
+
+    ${({ abort }) => abort && css`
+        background-color: ${({ theme }) => theme.color.abort};
+    `}
+        
+    &:hover {
+        filter: brightness(130%);
+    }
+
+    &:active {
+        filter: brightness(160%);
+        box-shadow: inset 1px 1px 3px ${({ theme }) => theme.color.shadows};
+    }
+`;
+
+export const TextareaWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+`;
+
+export const TextareaButtonsWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+    gap: 0.5rem;
+`;
+
+export const Textarea = styled.textarea`
+    border: solid 1px ${({ theme }) => theme.color.borders};
+    padding: 10px;
+    flex-grow: 1;
+    resize: vertical;
+    margin: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 `;

@@ -3,7 +3,7 @@ import { collection, query, orderBy, onSnapshot } from "firebase/firestore"
 
 import { db } from 'services/firebase'
 
-import { RenderedTask } from "todos/types";
+import { RenderedTask, Task } from "todos/types";
 import { Form, TasksList } from "components";
 
 export const Todos = () => {
@@ -31,7 +31,7 @@ export const Todos = () => {
   return (
     <>
       <Form />
-      <TasksList tasks={tasks} />
+      <TasksList tasks={tasks} setTasks={setTasks} />
     </>
   )
 };

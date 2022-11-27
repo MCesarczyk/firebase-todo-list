@@ -9,6 +9,8 @@ export const theme = {
         shadows: "darkgrey",
         toggleDone: "forestgreen",
         remove: "crimson",
+        accept: "#4285f4",
+        abort: "#525252",
     },
     breakpoint: {
         mobileMax: "480px",
