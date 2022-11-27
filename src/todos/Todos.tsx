@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, query, orderBy, onSnapshot } from "firebase/firestore"
+import { collection, query, orderBy, onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 import { db } from 'services/firebase'
 
@@ -27,6 +27,7 @@ export const Todos = () => {
 
   const getTasks = () => {
     const q = query(collection(db, 'tasks'), orderBy('created', 'desc'));
+
     onSnapshot(q, (querySnapshot) => {
       setTasks(querySnapshot.docs.map(doc => ({
         id: doc.id,
@@ -34,6 +35,26 @@ export const Todos = () => {
         edited: false,
       })))
     })
+  };
+
+  const markTaskDone = async (id: string, status: boolean) => {
+    const taskDocRef = doc(db, 'tasks', id);
+
+    try {
+      await updateDoc(taskDocRef, {
+        completed: status,
+      })
+    } catch (err) {
+      alert(err)
+    }
+  };
+
+  const handleMarkAllTasksStatus = async (status: boolean) => {
+    const taskIds = tasks.map(({ id }) => id);
+
+    taskIds.forEach(id => {
+      markTaskDone(id, status);
+    });
   };
 
   useEffect(() => {
@@ -53,7 +74,9 @@ export const Todos = () => {
           available={!!tasks.length}
           hideDone={hideDone}
           allDone={tasks.every(({ data }) => data.completed)}
+          allUndone={tasks.every(({ data }) => !data.completed)}
           setHideDone={setHideDone}
+          setAllDoneStatus={handleMarkAllTasksStatus}
         />
       </ExtraContentWrapper>
       <TasksList tasks={tasks} setTasks={setTasks} hideDone={hideDone} />

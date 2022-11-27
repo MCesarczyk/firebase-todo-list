@@ -31,21 +31,29 @@ interface AuxiliaryButtonsProps {
     available: boolean;
     hideDone: boolean;
     allDone: boolean;
+    allUndone: boolean;
     setHideDone: (hideDone: boolean) => void;
+    setAllDoneStatus: (status: boolean) => void;
 };
 
-export const AuxiliaryButtons = ({ available, hideDone, allDone, setHideDone }: AuxiliaryButtonsProps) => (
+export const AuxiliaryButtons = ({ available, hideDone, allDone, allUndone, setHideDone, setAllDoneStatus }: AuxiliaryButtonsProps) => (
     <AuxiliaryButtonsWrapper>
         {available ? (
             <>
                 <AuxiliaryButton onClick={() => setHideDone(!hideDone)}>
-                    {hideDone ? "Show all done" : "Hide all done"}
+                    {hideDone ? "Show done tasks" : "Hide done tasks"}
                 </AuxiliaryButton>
                 <AuxiliaryButton
-                    onClick={() => console.log("setAllDone")}
+                    onClick={() => setAllDoneStatus(true)}
                     disabled={allDone}
                 >
-                    Set all done
+                    Mark all
+                </AuxiliaryButton>
+                <AuxiliaryButton
+                    onClick={() => setAllDoneStatus(false)}
+                    disabled={allUndone}
+                >
+                    Unmark all
                 </AuxiliaryButton>
             </>
         ) : null}

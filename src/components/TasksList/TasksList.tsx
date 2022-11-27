@@ -27,7 +27,8 @@ export const TasksList = ({ tasks, setTasks, hideDone }: TasksListProps) => {
   };
 
   const handleUpdate = async (task: RenderedTask) => {
-    const taskDocRef = doc(db, 'tasks', task.id)
+    const taskDocRef = doc(db, 'tasks', task.id);
+
     try {
       await updateDoc(taskDocRef, {
         title: textareaValue.slice(0, TASK_TITLE_TRIMMED_LENGTH),
@@ -40,16 +41,18 @@ export const TasksList = ({ tasks, setTasks, hideDone }: TasksListProps) => {
 
   const handleDelete = async (taskId: string) => {
     const taskDocRef = doc(db, 'tasks', taskId);
+
     try {
       await deleteDoc(taskDocRef);
     } catch (err) {
       alert(err)
     }
-  }
+  };
 
   const handleCheckedChange = async (taskId: string) => {
     const actualTaskState = tasks.filter(({ id }) => id === taskId)[0].data.completed;
     const taskDocRef = doc(db, 'tasks', taskId);
+
     try {
       await updateDoc(taskDocRef, {
         completed: !actualTaskState,
@@ -57,7 +60,7 @@ export const TasksList = ({ tasks, setTasks, hideDone }: TasksListProps) => {
     } catch (err) {
       alert(err)
     }
-  }
+  };
 
   return (
     <StyledTaskList>
