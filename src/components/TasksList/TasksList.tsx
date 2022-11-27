@@ -6,11 +6,12 @@ import { db } from 'services/firebase';
 import { TASK_TITLE_TRIMMED_LENGTH } from "todos/constants";
 
 interface TasksListProps {
+  hideDone: boolean;
   tasks: RenderedTask[];
   setTasks: any;
 };
 
-export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
+export const TasksList = ({ tasks, setTasks, hideDone }: TasksListProps) => {
   const [textareaValue, setTextareaValue] = useState<any>("");
 
   const toggleTaskEdited = (taskId: string) => {
@@ -63,7 +64,7 @@ export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
       {tasks.map(task => (
         <ListItem
           key={task.id}
-          hidden={task.data.completed}
+          hidden={task.data.completed && hideDone}
         >
           <Button
             toggleDone

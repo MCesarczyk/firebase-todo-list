@@ -9,8 +9,8 @@ export const StyledTaskList = styled.ul`
     margin: 0 auto;
 `;
 
-export const ListItem = styled.li`
-    display: grid;
+export const ListItem = styled.li<{ hidden: boolean }>`
+    display: ${({ hidden }) => hidden ? 'none' : 'grid'};
     grid-gap: 10px;
     grid-template-columns: auto 1fr auto;
     align-items: center;

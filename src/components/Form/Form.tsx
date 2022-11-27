@@ -2,8 +2,9 @@ import { useRef, useState } from "react";
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from 'services/firebase';
 
-import { FormComponent, Button, Input } from "./styled";
+import { FormComponent, Button } from "./styled";
 import { TASK_TITLE_TRIMMED_LENGTH } from "todos/constants";
+import { Input } from "components/Input";
 
 export const Form = () => {
     const inputRef = useRef<HTMLInputElement | null>(null);

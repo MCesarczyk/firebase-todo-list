@@ -29,7 +29,6 @@ export const App = () => {
           },
         ]}
       />
-
       <Routes>
         <Route index element={<Login />} />
         <Route path={ROUTES.LOGIN} element={<Login />} />
