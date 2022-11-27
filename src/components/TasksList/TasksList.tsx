@@ -37,6 +37,18 @@ export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
     }
   };
 
+  const handleCheckedChange = async (taskId: string) => {
+    const actualTaskState = tasks.filter(({ id }) => id === taskId)[0].data.completed;
+    const taskDocRef = doc(db, 'tasks', taskId);
+    try {
+      await updateDoc(taskDocRef, {
+        completed: !actualTaskState,
+      })
+    } catch (err) {
+      alert(err)
+    }
+  }
+
   return (
     <StyledTaskList>
       {tasks.map(task => (
@@ -46,7 +58,7 @@ export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
         >
           <Button
             toggleDone
-            onClick={() => console.log("done")}
+            onClick={() => handleCheckedChange(task.id)}
           >
             {task.data.completed ? "✔" : " "}
           </Button>
