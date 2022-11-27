@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { StyledTaskList, ListItem, TaskContent, Button, StyledLink, Textarea, TextareaWrapper, TextareaButtonsWrapper } from "./styled";
-import { doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { RenderedTask } from "todos/types";
 import { db } from 'services/firebase';
 import { TASK_TITLE_TRIMMED_LENGTH } from "todos/constants";
@@ -36,6 +36,15 @@ export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
       alert(err);
     }
   };
+
+  const handleDelete = async (taskId: string) => {
+    const taskDocRef = doc(db, 'tasks', taskId);
+    try {
+      await deleteDoc(taskDocRef);
+    } catch (err) {
+      alert(err)
+    }
+  }
 
   const handleCheckedChange = async (taskId: string) => {
     const actualTaskState = tasks.filter(({ id }) => id === taskId)[0].data.completed;
@@ -77,7 +86,7 @@ export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
           </TaskContent>
           <Button
             remove
-            onClick={() => console.log("removeTask")}
+            onClick={() => handleDelete(task.id)}
           >
             🗑
           </Button>
