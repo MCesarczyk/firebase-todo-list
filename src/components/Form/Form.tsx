@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import { collection, addDoc, Timestamp } from 'firebase/firestore'
-import { db } from 'services/firebase'
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import { db } from 'services/firebase';
+
 import { FormComponent, Button, Input } from "./styled";
 import { TASK_TITLE_TRIMMED_LENGTH } from "todos/constants";
 

@@ -1,5 +1,9 @@
+import { useState } from "react";
 import { StyledTaskList, ListItem, TaskContent, Button, StyledLink, Textarea, TextareaWrapper, TextareaButtonsWrapper } from "./styled";
+import { doc, updateDoc } from "firebase/firestore";
 import { RenderedTask } from "todos/types";
+import { db } from 'services/firebase';
+import { TASK_TITLE_TRIMMED_LENGTH } from "todos/constants";
 
 interface TasksListProps {
   tasks: RenderedTask[];
@@ -7,6 +11,8 @@ interface TasksListProps {
 };
 
 export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
+  const [textareaValue, setTextareaValue] = useState<any>("");
+
   const toggleTaskEdited = (taskId: string) => {
     setTasks((tasks: RenderedTask[]) => tasks.map(task => {
       if (task.id === taskId) {
@@ -15,6 +21,20 @@ export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
 
       return task;
     }));
+
+    setTextareaValue(tasks.filter(({ id }) => id === taskId)[0].data.description);
+  };
+
+  const handleUpdate = async (task: RenderedTask) => {
+    const taskDocRef = doc(db, 'tasks', task.id)
+    try {
+      await updateDoc(taskDocRef, {
+        title: textareaValue.slice(0, TASK_TITLE_TRIMMED_LENGTH),
+        description: textareaValue,
+      });
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -35,9 +55,9 @@ export const TasksList = ({ tasks, setTasks }: TasksListProps) => {
               <StyledLink onClick={() => toggleTaskEdited(task.id)}>{task.data.title}...</StyledLink>
             ) : (
               <TextareaWrapper>
-                <Textarea value={task.data.description} />
+                <Textarea value={textareaValue} onChange={(e: any) => setTextareaValue(e.target.value)} />
                 <TextareaButtonsWrapper>
-                  <Button accept onClick={() => toggleTaskEdited(task.id)}>✔</Button>
+                  <Button accept onClick={() => handleUpdate(task)}>✔</Button>
                   <Button abort onClick={() => toggleTaskEdited(task.id)}>✘</Button>
                 </TextareaButtonsWrapper>
               </TextareaWrapper>
